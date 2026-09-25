@@ -4,8 +4,7 @@
 
 # DeepSeek for Windows<sup>*</sup>
 
-**Open-source DeepSeek app for Windows 10 and 11.**<br>
-Its own window, a Desktop shortcut and a taskbar icon. Everything lives in one folder.
+Open-source app for Windows 10 and 11.
 
 [![Latest release](https://img.shields.io/github/v/release/ishimuraxxx-ai/deepseek-1.0.1?style=flat-square&color=4d6bfe&label=release)](../../releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/ishimuraxxx-ai/deepseek-1.0.1/total?style=flat-square&color=4d6bfe)](../../releases)

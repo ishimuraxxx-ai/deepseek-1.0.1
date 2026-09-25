@@ -4,8 +4,7 @@
 
 # DeepSeek для Windows<sup>*</sup>
 
-**Приложение DeepSeek с открытым кодом для Windows 10 и 11.**<br>
-Своё окно, ярлык на рабочем столе и значок на панели задач. Всё в одной папке.
+Приложение с открытым исходным кодом для Windows 10 и 11.
 
 [![Latest release](https://img.shields.io/github/v/release/ishimuraxxx-ai/deepseek-1.0.1?style=flat-square&color=4d6bfe&label=release)](../../releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/ishimuraxxx-ai/deepseek-1.0.1/total?style=flat-square&color=4d6bfe)](../../releases)
