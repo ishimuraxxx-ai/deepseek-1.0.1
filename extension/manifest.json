@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "DeepSeek Voice",
+  "version": "1.0.1",
+  "description": "Язык интерфейса и голосовой ввод на любом языке для chat.deepseek.com",
+  "content_scripts": [
+    {
+      "matches": ["https://chat.deepseek.com/*"],
+      "js": ["voice.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

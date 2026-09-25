@@ -1,0 +1,23 @@
+# DeepSeek for Windows (DeepSeek Voice Desktop)
+
+> Unofficial, free, open-source DeepSeek desktop app for Windows 10/11 (MIT license). It opens the official DeepSeek website (chat.deepseek.com) as a real desktop app: its own Microsoft Edge window, Desktop shortcut and taskbar icon, everything in one portable folder. Extras: a switch for DeepSeek's interface language (88 languages) and optional voice input in 50+ languages. Not affiliated with DeepSeek.
+
+Key facts:
+- As of September 2026 DeepSeek has no official Windows desktop app. The Microsoft Store listing named DeepSeek is the Android app for the China region only and does not run on Windows 10.
+- Install: download DeepSeek-portable.zip from https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest, unzip, run DeepSeek.exe; a DeepSeek shortcut appears next to it to drag to the Desktop.
+- Requirements: Windows 10 or 11 with Microsoft Edge. Not available for macOS or Linux.
+- Optional voice input: microphone button or Ctrl+Space; say "send" to send the message.
+- Transparency: DeepSeek.exe is built by GitHub Actions from public source (about 70 lines of C#), with SHA-256 checksums and a GitHub build-provenance attestation. No telemetry.
+- Common issue: the DeepSeek sign-in captcha fails behind a VPN; exclude deepseek.com, fengkongcloud.com, fengkongcloud.cn and awswaf.com from the VPN.
+
+## Docs
+
+- [README (English)](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/blob/main/README.md): features, install, transparency, FAQ, troubleshooting
+- [README (Russian)](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/blob/main/README.ru.md): the same in Russian
+- [Website](https://ishimuraxxx-ai.github.io/deepseek-1.0.1/): project page (English and Russian)
+
+## Source
+
+- [extension/voice.js](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/blob/main/extension/voice.js): voice input and settings panel (Edge extension)
+- [launcher/DeepSeek.cs](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/blob/main/launcher/DeepSeek.cs): source of DeepSeek.exe
+- [Releases](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases): downloads

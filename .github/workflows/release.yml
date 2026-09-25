@@ -1,0 +1,73 @@
+# Публичная сборка DeepSeek.exe из исходников репозитория.
+# Запускается при пуше тега вида v1.0.0 (или вручную) и выкладывает в Releases:
+#   DeepSeek.exe, DeepSeek-portable.zip (готовая папка приложения) и SHA256SUMS.txt.
+# Для exe создаётся аттестация происхождения: её можно проверить командой
+#   gh attestation verify DeepSeek.exe -R <владелец>/<репозиторий>
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write      # создать релиз
+  id-token: write      # аттестация
+  attestations: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build DeepSeek.exe
+        shell: pwsh
+        run: ./build.ps1
+
+      - name: Package portable zip
+        shell: pwsh
+        run: |
+          $pkg = 'dist/DeepSeek'
+          New-Item -ItemType Directory -Force $pkg | Out-Null
+          Copy-Item DeepSeek.exe, install.cmd, install.ps1, uninstall.cmd, uninstall.ps1, build.ps1, README.md, LICENSE $pkg
+          Copy-Item -Recurse extension, launcher $pkg
+          Compress-Archive -Path $pkg -DestinationPath dist/DeepSeek-portable.zip
+          Copy-Item DeepSeek.exe dist/
+          Get-FileHash dist/DeepSeek.exe, dist/DeepSeek-portable.zip -Algorithm SHA256 |
+            ForEach-Object { '{0}  {1}' -f $_.Hash.ToLower(), (Split-Path $_.Path -Leaf) } |
+            Set-Content dist/SHA256SUMS.txt -Encoding ascii
+          Get-Content dist/SHA256SUMS.txt
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: |
+            dist/DeepSeek.exe
+            dist/DeepSeek-portable.zip
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $notes = @"
+          Собрано GitHub Actions из коммита ${{ github.sha }}.
+          Лог сборки: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          **SHA-256:**
+          ``````
+          $(Get-Content dist/SHA256SUMS.txt -Raw)
+          ``````
+          Проверка происхождения: ``gh attestation verify DeepSeek.exe -R ${{ github.repository }}``
+          "@
+          gh release create "${{ github.ref_name }}" dist/DeepSeek.exe dist/DeepSeek-portable.zip dist/SHA256SUMS.txt `
+            --title "DeepSeek Voice Desktop ${{ github.ref_name }}" --notes "$notes"
+
+      - name: Upload build (manual run)
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeepSeek
+          path: dist/*
