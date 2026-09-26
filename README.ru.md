@@ -11,7 +11,7 @@
 [![Windows 10 | 11](https://img.shields.io/badge/Windows-10%20%7C%2011-4d6bfe?style=flat-square)](#требования)
 [![License: MIT](https://img.shields.io/github/license/ishimuraxxx-ai/deepseek-1.0.1?style=flat-square&color=4d6bfe)](LICENSE)
 
-<a href="../../releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87%20Скачать%20для%20Windows-4d6bfe?style=for-the-badge" alt="Скачать для Windows" height="44"></a>
+<a href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe"><img src="https://img.shields.io/badge/%E2%AC%87%20Скачать%20для%20Windows-4d6bfe?style=for-the-badge" alt="Скачать для Windows" height="44"></a>
 
 [English](README.md) · **Русский** · [Сайт](https://ishimuraxxx-ai.github.io/deepseek-1.0.1/ru/)
 
@@ -21,9 +21,10 @@
 
 ## Установка
 
-1. Скачайте **`DeepSeek-portable.zip`** из [Releases](../../releases/latest).
-2. Распакуйте в постоянное место, например `C:\DeepSeek`.
-3. Запустите **`DeepSeek.exe`**. Рядом появится ярлык **DeepSeek**: просто перетащите его на рабочий стол.
+1. Скачайте **[`DeepSeek.exe`](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe)**: один файл, ничего распаковывать не нужно.
+2. Запустите его. Откроется DeepSeek, а ярлык **DeepSeek** появится на рабочем столе и в меню «Пуск».
+
+Скачанный файл потом можно удалить: приложение копирует себя в `%LOCALAPPDATA%\Programs\DeepSeek`.
 
 Затем войдите в аккаунт DeepSeek. Готово.
 
@@ -35,7 +36,7 @@
 | | |
 |---|---|
 | 🖥️ **Своё окно** | Без вкладок и адресной строки. DeepSeek открывается как обычная программа Windows, со своим значком на панели задач. |
-| 📁 **Всё в одной папке** | Приложение, настройки и вход в аккаунт лежат в одной папке. Ваш обычный браузер не затрагивается. |
+| 📦 **Один файл** | Скачивается один `DeepSeek.exe`, без установщика и архивов. Приложение, настройки и вход в аккаунт лежат в одной папке; ваш обычный браузер не затрагивается. |
 | 🌐 **88 языков интерфейса** | Язык интерфейса DeepSeek переключается из панели настроек ⚙️. |
 | 🎤 **Голосовой ввод (по желанию)** | Диктовка кнопкой 🎤 или **Ctrl+Пробел** на 50+ языках. «Отправить» — отправляет сообщение. |
 | 🔍 **Прозрачная сборка** | exe собирает GitHub Actions из этого кода, с контрольными суммами и аттестацией происхождения. |
@@ -50,7 +51,7 @@
 
 Официального приложения DeepSeek для Windows нет. В Microsoft Store под этим именем — только Android-приложение для региона «Китай», которому нужна подсистема Windows для Android, а её Microsoft закрыла в 2025 году. Другие «DeepSeek Desktop» на GitHub раздают готовые установщики, которые нельзя сверить с исходным кодом.
 
-Этот проект — просто официальный сайт [chat.deepseek.com](https://chat.deepseek.com/), Microsoft Edge и около 70 строк кода, которые можно прочитать целиком.
+Этот проект — просто официальный сайт [chat.deepseek.com](https://chat.deepseek.com/), Microsoft Edge и около 120 строк кода, которые можно прочитать целиком.
 
 ## Прозрачность
 
@@ -68,7 +69,7 @@
 
 <br>
 
-`DeepSeek.exe` запускает Microsoft Edge в режиме приложения со своим профилем и небольшим расширением, и держит рядом с собой ярлык `DeepSeek.lnk`:
+`DeepSeek.exe` запускает Microsoft Edge в режиме приложения со своим профилем и небольшим расширением. Расширение вшито в exe: при запуске скачанный exe копирует себя в `%LOCALAPPDATA%\Programs\DeepSeek`, распаковывает туда расширение и держит ярлыки DeepSeek на рабочем столе и в меню «Пуск»:
 
 ```
 msedge.exe --user-data-dir="<папка>\profile"
@@ -80,9 +81,18 @@ msedge.exe --user-data-dir="<папка>\profile"
 Отдельный профиль делает окно своим процессом, поэтому расширение подключается, даже когда обычный Edge уже открыт.
 
 ```
-DeepSeek/
+%LOCALAPPDATA%\Programs\DeepSeek\
 ├── DeepSeek.exe        ← само приложение
-├── DeepSeek.lnk        ← ярлык, перетащите на рабочий стол (создаёт DeepSeek.exe)
+├── extension/          ← панель настроек и голосовой ввод (распакованы из exe)
+└── profile/            ← ваш вход в аккаунт DeepSeek (создаётся при первом запуске)
+```
+
+Если рядом с `DeepSeek.exe` есть папка `extension/` (копия этого репозитория), он работает прямо там и ничего не копирует:
+
+```
+DeepSeek/
+├── DeepSeek.exe        ← само приложение (собирается build.ps1)
+├── DeepSeek.lnk        ← ярлык (такой же DeepSeek.exe кладёт на рабочий стол)
 ├── extension/          ← панель настроек и голосовой ввод (расширение Edge)
 ├── launcher/           ← исходник DeepSeek.exe
 ├── build.ps1           ← сборка DeepSeek.exe из исходника
@@ -124,7 +134,7 @@ DeepSeek/
 
 Пересобрать вручную: `powershell -ExecutionPolicy Bypass -File build.ps1`
 
-**Новый релиз (для автора):** `git tag v1.0.2` и `git push origin v1.0.2`. GitHub Actions соберёт и опубликует `DeepSeek.exe`, `DeepSeek-portable.zip` и `SHA256SUMS.txt`.
+**Новый релиз (для автора):** `git tag v1.0.3` и `git push origin v1.0.3`. GitHub Actions соберёт и опубликует `DeepSeek.exe` и `SHA256SUMS.txt`.
 
 </details>
 
@@ -155,7 +165,9 @@ awswaf.com
 
 <br>
 
-Запустите `uninstall.cmd`, чтобы убрать ярлыки, затем удалите папку.
+Закройте DeepSeek, удалите папку `%LOCALAPPDATA%\Programs\DeepSeek` (вставьте это в адресную строку Проводника) и ярлыки DeepSeek на рабочем столе и в меню «Пуск».
+
+Копия репозитория: запустите `uninstall.cmd`, чтобы убрать ярлыки, затем удалите папку.
 
 </details>
 
@@ -170,7 +182,7 @@ awswaf.com
 <details>
 <summary><b>Как установить DeepSeek на компьютер с Windows 10 или 11?</b></summary>
 <br>
-Скачайте <code>DeepSeek-portable.zip</code> из Releases, распакуйте и запустите <code>DeepSeek.exe</code>. Рядом появится ярлык DeepSeek: перетащите его на рабочий стол.
+Скачайте <code>DeepSeek.exe</code> из Releases (один файл) и запустите. Ярлык DeepSeek появится на рабочем столе и в меню «Пуск».
 </details>
 
 <details>

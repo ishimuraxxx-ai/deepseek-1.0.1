@@ -11,7 +11,7 @@ Open-source app for Windows 10 and 11.
 [![Windows 10 | 11](https://img.shields.io/badge/Windows-10%20%7C%2011-4d6bfe?style=flat-square)](#requirements)
 [![License: MIT](https://img.shields.io/github/license/ishimuraxxx-ai/deepseek-1.0.1?style=flat-square&color=4d6bfe)](LICENSE)
 
-<a href="../../releases/latest"><img src="https://img.shields.io/badge/%E2%AC%87%20Download%20for%20Windows-4d6bfe?style=for-the-badge" alt="Download for Windows" height="44"></a>
+<a href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe"><img src="https://img.shields.io/badge/%E2%AC%87%20Download%20for%20Windows-4d6bfe?style=for-the-badge" alt="Download for Windows" height="44"></a>
 
 **English** · [Русский](README.ru.md) · [Website](https://ishimuraxxx-ai.github.io/deepseek-1.0.1/)
 
@@ -21,9 +21,10 @@ Open-source app for Windows 10 and 11.
 
 ## Install
 
-1. Download **`DeepSeek-portable.zip`** from [Releases](../../releases/latest).
-2. Unzip it to a permanent place, for example `C:\DeepSeek`.
-3. Run **`DeepSeek.exe`**. A **DeepSeek** shortcut appears next to it: just drag it to your Desktop.
+1. Download **[`DeepSeek.exe`](https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe)**: one file, nothing to unzip.
+2. Run it. DeepSeek opens, and a **DeepSeek** shortcut appears on your Desktop and in the Start menu.
+
+The downloaded file can be deleted afterwards: the app copies itself to `%LOCALAPPDATA%\Programs\DeepSeek`.
 
 Then sign in to your DeepSeek account. That's it.
 
@@ -35,7 +36,7 @@ Then sign in to your DeepSeek account. That's it.
 | | |
 |---|---|
 | 🖥️ **Its own window** | No browser tabs or address bar. DeepSeek opens like any Windows program, with its own taskbar icon. |
-| 📁 **One portable folder** | The app, settings and your login live in one folder. Your regular browser isn't touched. |
+| 📦 **One file** | Download a single `DeepSeek.exe`, no installer or zip. The app, settings and your login live in one folder; your regular browser isn't touched. |
 | 🌐 **88 interface languages** | Switch DeepSeek's interface language from the ⚙️ settings panel. |
 | 🎤 **Voice input (optional)** | Dictate with the 🎤 button or **Ctrl+Space** in 50+ languages. Say **"send"** to send. |
 | 🔍 **Transparent builds** | The exe is built by GitHub Actions from this code, with checksums and a provenance attestation. |
@@ -50,7 +51,7 @@ Then sign in to your DeepSeek account. That's it.
 
 DeepSeek has no official Windows app. The Microsoft Store listing named DeepSeek is only available in the China region, and it's the Android app, which needs the Windows Subsystem for Android that Microsoft shut down in 2025. Other "DeepSeek Desktop" projects ship prebuilt installers you can't check against their source.
 
-This project is just the official website [chat.deepseek.com](https://chat.deepseek.com/), Microsoft Edge and about 70 lines of code you can read in full.
+This project is just the official website [chat.deepseek.com](https://chat.deepseek.com/), Microsoft Edge and about 120 lines of code you can read in full.
 
 ## Transparency
 
@@ -68,7 +69,7 @@ This project is just the official website [chat.deepseek.com](https://chat.deeps
 
 <br>
 
-`DeepSeek.exe` starts Microsoft Edge in app mode with its own profile and a small extension, and keeps a `DeepSeek.lnk` shortcut next to itself:
+`DeepSeek.exe` starts Microsoft Edge in app mode with its own profile and a small extension. The extension is embedded in the exe: on launch the downloaded exe copies itself to `%LOCALAPPDATA%\Programs\DeepSeek`, unpacks the extension there and keeps DeepSeek shortcuts on the Desktop and in the Start menu:
 
 ```
 msedge.exe --user-data-dir="<folder>\profile"
@@ -80,9 +81,18 @@ msedge.exe --user-data-dir="<folder>\profile"
 The separate profile makes the window its own process, so the extension loads even when your regular Edge is open.
 
 ```
-DeepSeek/
+%LOCALAPPDATA%\Programs\DeepSeek\
 ├── DeepSeek.exe        ← the app
-├── DeepSeek.lnk        ← shortcut, drag it to the Desktop (DeepSeek.exe creates it)
+├── extension/          ← settings panel and voice input (unpacked from the exe)
+└── profile/            ← your DeepSeek login (created on first run)
+```
+
+If `DeepSeek.exe` has an `extension/` folder next to it (a copy of this repository), it runs right there instead and doesn't copy anything:
+
+```
+DeepSeek/
+├── DeepSeek.exe        ← the app (built by build.ps1)
+├── DeepSeek.lnk        ← shortcut (DeepSeek.exe also puts one on the Desktop)
 ├── extension/          ← settings panel and voice input (Edge extension)
 ├── launcher/           ← source code of DeepSeek.exe
 ├── build.ps1           ← builds DeepSeek.exe from source
@@ -124,7 +134,7 @@ Speech is recognized by Edge's built-in Web Speech API (a Microsoft cloud servic
 
 Rebuild manually: `powershell -ExecutionPolicy Bypass -File build.ps1`
 
-**New release (maintainer):** `git tag v1.0.2` and `git push origin v1.0.2`. GitHub Actions builds and publishes `DeepSeek.exe`, `DeepSeek-portable.zip` and `SHA256SUMS.txt`.
+**New release (maintainer):** `git tag v1.0.3` and `git push origin v1.0.3`. GitHub Actions builds and publishes `DeepSeek.exe` and `SHA256SUMS.txt`.
 
 </details>
 
@@ -155,7 +165,9 @@ awswaf.com
 
 <br>
 
-Run `uninstall.cmd` to remove the shortcuts, then delete the folder.
+Close DeepSeek, delete the folder `%LOCALAPPDATA%\Programs\DeepSeek` (paste this into the Explorer address bar) and the DeepSeek shortcuts on the Desktop and in the Start menu.
+
+A copy of the repository: run `uninstall.cmd` to remove the shortcuts, then delete the folder.
 
 </details>
 
@@ -170,7 +182,7 @@ No (as of September 2026). DeepSeek offers the website chat.deepseek.com and mob
 <details>
 <summary><b>How do I install DeepSeek on a Windows 10 or 11 PC?</b></summary>
 <br>
-Download <code>DeepSeek-portable.zip</code> from Releases, unzip it and run <code>DeepSeek.exe</code>. A DeepSeek shortcut appears next to it: drag it to your Desktop.
+Download <code>DeepSeek.exe</code> from Releases (one file) and run it. A DeepSeek shortcut appears on your Desktop and in the Start menu.
 </details>
 
 <details>

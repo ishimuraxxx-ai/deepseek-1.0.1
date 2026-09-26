@@ -23,12 +23,12 @@
     "name": "DeepSeek для Windows (DeepSeek Voice Desktop)",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Windows 10, Windows 11",
-    "softwareVersion": "1.0.1",
+    "softwareVersion": "1.0.2",
     "inLanguage": "ru",
     "description": "Неофициальное приложение DeepSeek для Windows 10 и 11 с открытым кодом: DeepSeek в отдельном окне Microsoft Edge с ярлыком и значком на панели задач, 88 языков интерфейса и голосовой ввод.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
     "license": "https://opensource.org/licenses/MIT",
-    "downloadUrl": "https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest",
+    "downloadUrl": "https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe",
     "codeRepository": "https://github.com/ishimuraxxx-ai/deepseek-1.0.1",
     "screenshot": "https://ishimuraxxx-ai.github.io/deepseek-1.0.1/screenshot-ru.png"
   }
@@ -42,7 +42,7 @@
       { "@type": "Question", "name": "Есть ли официальное приложение DeepSeek для Windows?",
         "acceptedAnswer": { "@type": "Answer", "text": "Нет (на сентябрь 2026). У DeepSeek есть сайт chat.deepseek.com и мобильные приложения. В Microsoft Store под именем DeepSeek доступно только Android-приложение для региона «Китай», на Windows 10 оно не работает. DeepSeek для Windows (DeepSeek Voice Desktop) — неофициальная открытая альтернатива: официальный сайт в отдельном окне." } },
       { "@type": "Question", "name": "Как установить DeepSeek на компьютер с Windows 10 или 11?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Скачайте DeepSeek-portable.zip со страницы Releases на GitHub, распакуйте и запустите DeepSeek.exe. Рядом появится ярлык DeepSeek, его можно перетащить на рабочий стол." } },
+        "acceptedAnswer": { "@type": "Answer", "text": "Скачайте DeepSeek.exe (один файл) со страницы Releases на GitHub и запустите. Ярлык DeepSeek появится на рабочем столе и в меню «Пуск»." } },
       { "@type": "Question", "name": "Это безопасно?",
         "acceptedAnswer": { "@type": "Answer", "text": "Весь код открыт. DeepSeek.exe собирается публично на GitHub Actions, с контрольными суммами SHA-256 и аттестацией происхождения GitHub. Приложение не собирает данные." } },
       { "@type": "Question", "name": "Как поменять язык интерфейса DeepSeek?",
@@ -58,7 +58,10 @@
     <header>
       <a class="brand" href="index.html"><span class="win"><i></i><i></i><i></i><i></i></span>DeepSeek для Windows</a>
       <nav>
+        <a href="#install">Установка</a>
+        <a href="#faq">Вопросы</a>
         <a href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1">GitHub</a>
+        <a class="dl" href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe">Скачать</a>
         <a href="../index.html" hreflang="en">EN</a>
         <a href="index.html" aria-current="page">RU</a>
       </nav>
@@ -69,10 +72,10 @@
         <h1>DeepSeek для <span>Windows</span><sup>*</sup></h1>
         <p class="lead">Приложение с открытым исходным кодом для Windows 10 и 11.</p>
         <div class="cta">
-          <a class="btn primary" href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest">Скачать для Windows</a>
+          <a class="btn primary" href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe">Скачать для Windows</a>
           <a class="btn" href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1">Исходный код</a>
         </div>
-        <p class="note">Windows 10/11 · работает на Microsoft Edge, который уже есть в Windows · лицензия MIT</p>
+        <p class="note">Один файл DeepSeek.exe · Windows 10/11 · работает на Microsoft Edge, который уже есть в Windows · лицензия MIT</p>
         <div class="shot"><img src="../screenshot-ru.png" width="1280" height="500" alt="DeepSeek для Windows: чат DeepSeek в отдельном окне с панелью настроек"></div>
       </section>
 
@@ -80,18 +83,17 @@
         <h2>Почему это приложение</h2>
         <div class="grid">
           <div class="card"><h3>Своё окно</h3><p>Без вкладок и адресной строки. DeepSeek открывается как обычная программа Windows, со своим значком на панели задач.</p></div>
-          <div class="card"><h3>Всё в одной папке</h3><p>Запуск, настройки и вход в аккаунт лежат в одной переносной папке. Ваш обычный браузер не затрагивается.</p></div>
+          <div class="card"><h3>Один файл</h3><p>Скачивается один DeepSeek.exe, без установщика и архивов. Настройки и вход в аккаунт хранятся в папке приложения; ваш обычный браузер не затрагивается.</p></div>
           <div class="card"><h3>88 языков интерфейса</h3><p>Язык интерфейса DeepSeek переключается из панели настроек.</p></div>
           <div class="card"><h3>Голосовой ввод — по желанию</h3><p>Надиктовать сообщение можно кнопкой микрофона или Ctrl+Пробел, более 50 языков.</p></div>
         </div>
       </section>
 
-      <section>
+      <section id="install">
         <h2>Установка</h2>
         <ol>
-          <li>Скачайте <code>DeepSeek-portable.zip</code> из <a href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest">Releases</a>.</li>
-          <li>Распакуйте в постоянное место, например <code>C:\DeepSeek</code>.</li>
-          <li>Запустите <code>DeepSeek.exe</code>. Рядом появится ярлык <b>DeepSeek</b>: просто перетащите его на рабочий стол.</li>
+          <li>Скачайте <a href="https://github.com/ishimuraxxx-ai/deepseek-1.0.1/releases/latest/download/DeepSeek.exe"><code>DeepSeek.exe</code></a>: один файл, ничего распаковывать не нужно.</li>
+          <li>Запустите его. Ярлык <b>DeepSeek</b> появится на рабочем столе и в меню «Пуск».</li>
           <li>Войдите в аккаунт DeepSeek.</li>
         </ol>
         <p class="note">Если Windows пишет «Система Windows защитила ваш компьютер», нажмите «Подробнее» → «Выполнить в любом случае». exe не подписан платным сертификатом, см. раздел «Прозрачность».</p>
@@ -100,19 +102,19 @@
       <section>
         <h2>Прозрачность</h2>
         <ul>
-          <li>Весь код открыт: запускающий файл (<code>DeepSeek.cs</code>, около 70 строк) и небольшое расширение Edge.</li>
+          <li>Весь код открыт: запускающий файл (<code>DeepSeek.cs</code>, около 120 строк) и небольшое расширение Edge.</li>
           <li><code>DeepSeek.exe</code> собирает GitHub Actions из открытого кода, а не автор на своём компьютере. Логи сборки публичны.</li>
           <li>У каждого релиза есть SHA-256 и аттестация происхождения GitHub: <code>gh attestation verify DeepSeek.exe -R ishimuraxxx-ai/deepseek-1.0.1</code></li>
           <li>Никакой телеметрии. Приложение обращается только к DeepSeek.</li>
         </ul>
       </section>
 
-      <section>
+      <section id="faq">
         <h2>Частые вопросы</h2>
         <details><summary>Есть ли официальное приложение DeepSeek для Windows?</summary>
           <p>Нет (на сентябрь 2026). У DeepSeek есть сайт chat.deepseek.com и мобильные приложения. В Microsoft Store под именем DeepSeek доступно только Android-приложение для региона «Китай», на Windows 10 оно не работает. Этот проект — неофициальная открытая альтернатива: официальный сайт в отдельном окне.</p></details>
         <details><summary>Как установить DeepSeek на компьютер с Windows 10 или 11?</summary>
-          <p>Скачайте DeepSeek-portable.zip из Releases, распакуйте и запустите DeepSeek.exe. Рядом появится ярлык DeepSeek: перетащите его на рабочий стол.</p></details>
+          <p>Скачайте DeepSeek.exe из Releases (один файл) и запустите. Ярлык DeepSeek появится на рабочем столе и в меню «Пуск».</p></details>
         <details><summary>Это безопасно?</summary>
           <p>Весь код открыт, exe собирается публично на GitHub Actions с контрольными суммами и аттестацией происхождения. Приложение не собирает данные и хранит вход в аккаунт только в своей папке.</p></details>
         <details><summary>Как поменять язык интерфейса DeepSeek?</summary>
